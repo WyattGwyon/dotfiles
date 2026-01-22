@@ -9,6 +9,7 @@ declare -A FILES=(
     ["$DOTFILES/bash/.bashrc"]="$HOME/.bashrc"
     ["$DOTFILES/nvim/init.lua"]="$HOME/.config/nvim/init.lua"
     ["$DOTFILES/zsh/.zshrc"]="$HOME/.zshrc"
+    ["$DOTFILES/github/.gitconfig"]="$HOME/.gitconfig"
 )
 
 backup() {

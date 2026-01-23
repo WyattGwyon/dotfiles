@@ -209,6 +209,33 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>O", { noremap = true })
+vim.keymap.set("i", "(", "()<Esc>i", { noremap = true })
+vim.keymap.set("i", "[", "[]<Esc>i", { noremap = true })
+
+vim.keymap.set("i", ")", function()
+	local col = vim.fn.col(".")
+	local line = vim.fn.getline(".")
+	return line:sub(col, col) == ")" and "<Right>" or ")"
+end, { expr = true, silent = true })
+
+vim.keymap.set("i", "]", function()
+	local col = vim.fn.col(".")
+	local line = vim.fn.getline(".")
+	return line:sub(col, col) == "]" and "<Right>" or "]"
+end, { expr = true, silent = true })
+
+vim.keymap.set("i", "'", function()
+	local col = vim.fn.col(".")
+	local line = vim.fn.getline(".")
+	return line:sub(col, col) == "'" and "<Right>" or "''<Left>"
+end, { expr = true, silent = true })
+
+vim.keymap.set("i", '"', function()
+	local col = vim.fn.col(".")
+	local line = vim.fn.getline(".")
+	return line:sub(col, col) == '"' and "<Right>" or '""<Left>'
+end, { expr = true, silent = true })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 
@@ -1061,4 +1088,8 @@ require("lazy").setup({
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=4 sts=4 sw=4 et
+
+-- NOTE Enable automatic indentation
+-- vim: ts=4 sw=4 sts=4 et
+-- vim: ai cin si sm number rnu cc=81 cuc
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "red" })

@@ -237,6 +237,7 @@ vim.keymap.set("i", '"', function()
 	return line:sub(col, col) == '"' and "<Right>" or '""<Left>'
 end, { expr = true, silent = true })
 
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -255,6 +256,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function(data)
+		local stats = vim.loop.fs_stat(data.ddile)
+		if stats and stats.type == "directory" then
+			require("nvim-tree.api").tree.open()
+		end
 	end,
 })
 
@@ -426,6 +436,14 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
+			{
+				"nvim-tree/nvim-tree.lua",
+				dependencies = { "nvim-tree/nvim-web-devicons" },
+				config = function()
+					require("nvim-tree").setup({})
+				end,
+			},
+
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
 		config = function()

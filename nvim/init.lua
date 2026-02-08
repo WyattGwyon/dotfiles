@@ -261,7 +261,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function(data)
-		local stats = vim.loop.fs_stat(data.ddile)
+		local stats = vim.loop.fs_stat(data.file)
 		if stats and stats.type == "directory" then
 			require("nvim-tree.api").tree.open()
 		end

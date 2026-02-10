@@ -1122,4 +1122,4 @@ vim.opt.hidden = true
 vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.directory:prepend(vim.fn.expand("~/.local/state/nvim/swap//"))
-vim.opt.expandtab = true -- et
+vim.opt.expandtab = false -- et

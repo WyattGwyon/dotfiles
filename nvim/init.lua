@@ -149,8 +149,14 @@ vim.o.splitbelow = true
 --  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "» ",
+	trail = "·",
+	nbsp = "␣",
+	extends = "›",
+	precedes = "‹",
+}
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = "split"
@@ -1109,8 +1115,11 @@ require("lazy").setup({
 
 -- NOTE Enable automatic indentation
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "red" })
-vim.opt.tabstop = 4       -- ts
-vim.opt.shiftwidth = 4    -- sw
-vim.opt.softtabstop = 4   -- sts
-vim.opt.expandtab = true  -- et
-
+vim.opt.tabstop = 4 -- ts
+vim.opt.shiftwidth = 4 -- sw
+vim.opt.softtabstop = 4 -- sts
+vim.opt.hidden = true
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+vim.opt.directory:prepend(vim.fn.expand("~/.local/state/nvim/swap//"))
+vim.opt.expandtab = true -- et

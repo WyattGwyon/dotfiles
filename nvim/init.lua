@@ -1108,6 +1108,9 @@ require("lazy").setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 
 -- NOTE Enable automatic indentation
--- vim: ts=4 sw=4 sts=4 et
--- vim: ai cin si sm number rnu cc=81 cuc
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "red" })
+vim.opt.tabstop = 4       -- ts
+vim.opt.shiftwidth = 4    -- sw
+vim.opt.softtabstop = 4   -- sts
+vim.opt.expandtab = true  -- et
+

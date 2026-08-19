@@ -1,24 +1,24 @@
 --[[
 
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
+-=====================================================================
+-==================== READ THIS BEFORE CONTINUING ====================
+-=====================================================================
+-========                                    .-----.          ========
+-========         .----------------------.   | === |          ========
+-========         |.-""""""""""""""""""-.|   |-----|          ========
+-========         ||                    ||   | === |          ========
+-========         ||   KICKSTART.NVIM   ||   |-----|          ========
+-========         ||                    ||   | === |          ========
+-========         ||                    ||   |-----|          ========
+-========         ||:Tutor              ||   |:::::|          ========
+-========         |'-..................-'|   |____o|          ========
+-========         `"")----------------(""`   ___________      ========
+-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
+-========       /:::========|  |==hjkl==:::\  \ required \    ========
+-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
+-========                                                     ========
+-=====================================================================
+-=====================================================================
 
 What is Kickstart?
 
@@ -30,7 +30,6 @@ What is Kickstart?
 
     Once you've done that, you can start exploring, configuring and tinkering to
     make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
 
     If you don't know anything about Lua, I recommend taking some time to read through
     a guide. One possible example which will only take 10-15 minutes:
@@ -446,7 +445,12 @@ require("lazy").setup({
 				"nvim-tree/nvim-tree.lua",
 				dependencies = { "nvim-tree/nvim-web-devicons" },
 				config = function()
-					require("nvim-tree").setup({})
+					require("nvim-tree").setup({
+						auto_reload_on_write = true,
+						filesystem_watchers = {
+							enable = true,
+						},
+					})
 				end,
 			},
 
@@ -775,6 +779,9 @@ require("lazy").setup({
 							completion = {
 								callSnippet = "Replace",
 							},
+							diagnostics = {
+								globals = { "vim" },
+							},
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 							-- diagnostics = { disable = { 'missing-fields' } },
 						},
@@ -1027,9 +1034,9 @@ require("lazy").setup({
 	},
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
-		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
 				"bash",
@@ -1123,3 +1130,11 @@ vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.directory:prepend(vim.fn.expand("~/.local/state/nvim/swap//"))
 vim.opt.expandtab = false -- et
+vim.cmd.colorscheme("default")
+vim.opt.wrap = false
+
+vim.cmd([[
+  highlight Normal guibg=NONE ctermbg=NONE
+  highlight NormalNC guibg=NONE ctermbg=NONE
+  highlight EndOfBuffer guibg=NONE ctermbg=NONE
+]])

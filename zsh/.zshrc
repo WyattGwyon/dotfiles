@@ -112,3 +112,6 @@ source $ZSH/oh-my-zsh.sh
 alias paco='/home/clouden/francinette/tester.sh'
 
 export MAIL="clouden@student.42madrid.com"
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/clouden/.lmstudio/bin"

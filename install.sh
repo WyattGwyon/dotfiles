@@ -11,6 +11,7 @@ declare -A FILES=(
     ["$DOTFILES/zsh/.zshrc"]="$HOME/.zshrc"
     ["$DOTFILES/github/.gitconfig"]="$HOME/.gitconfig"
     ["$DOTFILES/tmux/.tmux.conf"]="$HOME/.tmux.conf"
+    ["$DOTFILES/readline/.inputrc"]="$HOME/.inputrc"
 )
 
 backup() {

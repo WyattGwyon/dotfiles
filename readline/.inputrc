@@ -1,0 +1,11 @@
+set editing-mode vi
+set show-mode-in-prompt on
+
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set mark-directories on
+set visible-stats on
+set bell-style none
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward

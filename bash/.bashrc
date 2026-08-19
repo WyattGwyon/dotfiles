@@ -6,6 +6,12 @@ RESET="\033[0m"
 BOLD="\033[1m"
 
 export MAIL="clouden@student.42madrid.com"
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+export JAVA_HOME=/usr/lib64/jvm/java-17-openjdk-17
+
+#vim up yout terminal
+set -o vi
 
 # override original cd
 cd () {
@@ -72,3 +78,12 @@ parse_git_branch()
 }
 
 export PS1="\[$BOLD\]\[$BLUE\]\u@\h:\w\[$RED\]\$(parse_git_branch)\[$YELLOW\]\$ \[$RESET\]"
+export PATH=/home/clouden/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/spark/bin:/opt/spark/sbin:/opt/spark/bin:/opt/spark/sbin:/sbin:/usr/sbin
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/clouden/.lmstudio/bin"
+export PATH=/home/clouden/.lmstudio/bin:/home/clouden/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/spark/bin:/opt/spark/sbin:/opt/spark/bin:/opt/spark/sbin:/sbin:/usr/sbin
+
+if [ -f "$HOME/.bashrc.local" ]; then
+	source "$HOME/.bashrc.local"
+fi

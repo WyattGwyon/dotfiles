@@ -47,6 +47,9 @@ parse_git_branch()
 
 export PS1="\[$BOLD\]\[$BLUE\]\u@\h:\w\[$RED\]\$(parse_git_branch)\[$YELLOW\]\$ \[$RESET\]"
 
+export INPUTRC="$HOME/.inputrc"
+bind -f "$INPUTRC"
+
 if [ -f "$HOME/.bashrc.local" ]; then
 	source "$HOME/.bashrc.local"
 fi

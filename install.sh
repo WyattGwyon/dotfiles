@@ -17,7 +17,7 @@ declare -A FILES=(
 backup() {
     local target="$1"
     if [ -e "$target" ] && [ ! -L "$target" ]; then
-        mv "$target" "target.bak"
+        mv "$target" "$target.bak"
         echo "Backed up $target -> $target.bak"
     fi
 }

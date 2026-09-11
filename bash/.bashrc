@@ -5,11 +5,6 @@ YELLOW="\033[1;33m"
 RESET="\033[0m"
 BOLD="\033[1m"
 
-export MAIL="clouden@student.42madrid.com"
-export SPARK_HOME=/opt/spark
-export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-export JAVA_HOME=/usr/lib64/jvm/java-17-openjdk-17
-
 #vim up yout terminal
 set -o vi
 
@@ -36,33 +31,6 @@ cd () {
 		fi
 }
 
-: <<'END_COMMENT'
-cd() {
-    # Change directory
-    builtin cd "$@" || return
-
-    # Only deactivate if the previous directory had a venv
-    # Compare the previous directory venv with the new one
-    local new_venv=""
-
-    # Check if .venv or venv exists in the new directory
-    if [[ -f "./.venv/bin/activate" ]]; then
-        new_venv="./.venv/bin/activate"
-    elif [[ -f "./venv/bin/activate" ]]; then
-        new_venv="./venv/bin/activate"
-    fi
-
-    # If there’s a new venv and it's different from current, deactivate old
-    if [[ -n "$new_venv" ]]; then
-        if [[ -n "$VIRTUAL_ENV" ]]; then
-            deactivate 2>/dev/null
-        fi
-        source "$new_venv"
-        echo "Activated venv: $VIRTUAL_ENV"
-    fi
-}
-END_COMMENT
-
 parse_git_branch()
 {
 	git rev-parse --is-inside-work-tree &>/dev/null || return
@@ -78,12 +46,8 @@ parse_git_branch()
 }
 
 export PS1="\[$BOLD\]\[$BLUE\]\u@\h:\w\[$RED\]\$(parse_git_branch)\[$YELLOW\]\$ \[$RESET\]"
-export PATH=/home/clouden/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/spark/bin:/opt/spark/sbin:/opt/spark/bin:/opt/spark/sbin:/sbin:/usr/sbin
-
-# Added by LM Studio CLI tool (lms)
-export PATH="$PATH:/home/clouden/.lmstudio/bin"
-export PATH=/home/clouden/.lmstudio/bin:/home/clouden/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/spark/bin:/opt/spark/sbin:/opt/spark/bin:/opt/spark/sbin:/sbin:/usr/sbin
 
 if [ -f "$HOME/.bashrc.local" ]; then
 	source "$HOME/.bashrc.local"
 fi
+

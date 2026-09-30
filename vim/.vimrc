@@ -41,8 +41,12 @@ highlight CursorLine cterm=NONE ctermbg=236 guibg=#2a2a2a
 inoremap {<CR> {<CR>}<Esc>O
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
+nnoremap <C-h> hxph
+nnoremap <C-l> xp
+nnoremap <C-j> ddp
+nnoremap <C-k> ddkP
 inoremap <expr> <silent> ) getline('.')[col('.') - 1] == ')' ? "\<Right>" : ")"
 inoremap <expr> <silent> ] getline('.')[col('.') - 1] == ']' ? "\<Right>" : "]"
-inoremap <expr> <silent> ' (strpart(getline('.'), col('.') - 1, 1) ==# "'" ? "\<Right>" : "''\<Left>")
 inoremap <expr> <silent> " (strpart(getline('.'), col('.') - 1, 1) ==# '"' ? "\<Right>" : "\"\"\<Left>")
+inoremap <expr> <silent> ' (strpart(getline('.'), col('.') - 1, 1) ==# "'" ? "\<Right>" : "''\<Left>")
 

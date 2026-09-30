@@ -217,6 +217,10 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("i", "{<CR>", "{<CR>}<Esc>O", { noremap = true })
 vim.keymap.set("i", "(", "()<Esc>i", { noremap = true })
 vim.keymap.set("i", "[", "[]<Esc>i", { noremap = true })
+vim.keymap.set("n", "<C-h>", "hxph", { desc = "Swap chars to left" })
+vim.keymap.set("n", "<C-l>", "xp", { desc = "Swap chars to right" })
+vim.keymap.set("n", "<C-k>", "ddkP", { desc = "Swap lines above" })
+vim.keymap.set("n", "<C-j>", "ddp", { desc = "Swap lines below" })
 
 vim.keymap.set("i", ")", function()
 	local col = vim.fn.col(".")
@@ -1130,7 +1134,7 @@ vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.directory:prepend(vim.fn.expand("~/.local/state/nvim/swap//"))
 vim.opt.expandtab = false -- et
-vim.cmd.colorscheme("default")
+vim.cmd.colorscheme("industry")
 vim.opt.wrap = false
 
 vim.cmd([[
